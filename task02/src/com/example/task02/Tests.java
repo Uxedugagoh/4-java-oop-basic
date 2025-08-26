@@ -69,4 +69,14 @@ public class Tests {
         }
     }
 
+    @Test
+    public void testSubtract() {
+        TimeSpan timeSpan1 = new TimeSpan(1, 59, 61);
+        timeSpan1.subtract(new TimeSpan(1, 0, 5));
+        System.out.println("timeSpan1 = " + timeSpan1);
+        Assert.assertEquals(0, timeSpan1.getHours());
+        Assert.assertEquals(59, timeSpan1.getHours());
+        Assert.assertEquals(56, timeSpan1.getHours());
+    }
+
 }

@@ -4,14 +4,18 @@ package com.example.task05;
  * Ломаная линия
  */
 public class PolygonalLine {
-
+    private final Point[] points = new Point[100];
+    private int endIndex;
     /**
      * Устанавливает точки ломаной линии
      *
      * @param points массив точек, которыми нужно проинициализировать ломаную линию
      */
     public void setPoints(Point[] points) {
-        // TODO: реализовать
+        for (int i = 0; i < points.length; i++) {
+            this.points[i] = new Point(points[i].getX(), points[i].getY());
+        }
+        endIndex = points.length;
     }
 
     /**
@@ -20,7 +24,8 @@ public class PolygonalLine {
      * @param point точка, которую нужно добавить к ломаной
      */
     public void addPoint(Point point) {
-        // TODO: реализовать
+        this.points[endIndex] = new Point(point.getX(), point.getY());
+        endIndex += 1;
     }
 
     /**
@@ -30,7 +35,9 @@ public class PolygonalLine {
      * @param y координата по оси ординат
      */
     public void addPoint(double x, double y) {
-        // TODO: реализовать
+        Point point = new Point(x, y);
+        this.points[endIndex] = point;
+        endIndex += 1;
     }
 
     /**
@@ -39,8 +46,11 @@ public class PolygonalLine {
      * @return длину ломаной линии
      */
     public double getLength() {
-        // TODO: реализовать
-        throw new AssertionError();
+        double summ = 0;
+        for (int i = 0; i < endIndex - 1; i++) {
+            summ += this.points[i].getLength(this.points[i+1]);
+        }
+        return summ;
     }
 
 }
